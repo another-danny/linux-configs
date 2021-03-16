@@ -1,4 +1,4 @@
-# @ Work
+# @ Work (2 ext. Displays)
 exec "bash $HOME/Documents/DisplayLayouts/2-Screens.sh"
 
 # @ Home
