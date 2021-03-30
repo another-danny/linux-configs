@@ -1,0 +1,28 @@
+syntax on
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set nu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+execute 'packadd YouCompleteMe'
+call plug#begin("~/.vim/plugged")
+
+Plug 'morhetz/gruvbox' 
+Plug 'puremourning/vimspector'
+Plug 'colepeters/spacemacs-theme.vim'
+Plug 'sainnhe/gruvbox-material'
+Plug 'phanviet/vim-monokai-pro'
+Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'sbdchd/neoformat'
+Plug 'nvim-lua/completion-nvim'
+
+call plug#end() 
