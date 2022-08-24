@@ -1,0 +1,51 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+  then
+    echo "[!] Help: -w wallpaper -s screen_number"
+    exit 1
+fi
+
+while test $# -gt 0; do
+	case "$1" in
+		-w|--wallpaper)
+			shift
+			if test $# -gt 0; then
+				export wallpaper=$1
+			else
+				echo "[!] No wallpaper specified."
+				exit 1
+			fi
+			shift
+			;;
+		-s|--screen)
+			shift
+			if test $# -gt 0; then
+				export screen=$1
+			else
+				echo "[!] No screen specified."
+				exit 1
+			fi
+			shift
+			;;
+		-sw|--switch)
+			shift
+			if test $# -gt 0; then
+				export wallpaperHome=~/Pictures/wallpaper/
+				export sw1=$wallpaperHome$1_wallpaper
+				touch $sw1
+				export sw2=$wallpaperHome$2_wallpaper
+				cp $sw1 $sw1.bak
+				mv $sw2 $sw1
+				mv $sw1.bak $sw2
+				exit 0
+			else
+				echo "[!] Specify wallpapers to change"
+			fi
+			shift
+			shift
+			;;
+
+	esac
+done
+export new_wallpaper=$screen'_wallpaper'
+cp $wallpaper ~/Pictures/wallpaper/$new_wallpaper
