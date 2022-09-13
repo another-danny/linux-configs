@@ -1,5 +1,5 @@
 " Options
-set background=dark
+" set background=dark
 set clipboard=unnamedplus
 set completeopt=noinsert,menuone,noselect
 set hidden
@@ -41,7 +41,8 @@ call plug#begin()
   " Asthetics
   Plug 'vim-airline/vim-airline' "Needs Nerd Fonts I guess
   Plug 'ryanoasis/vim-devicons'
-  Plug 'morhetz/gruvbox'
+  Plug 'ewilazarus/preto'
+  Plug 'kvrohit/substrata.nvim'
 
   " Utilities
   Plug 'sheerun/vim-polyglot'
@@ -57,12 +58,12 @@ call plug#end()
 
 let g:coc_disable_startup_warning = 1
 
-let g:airline_theme='gruvbox'
+let g:airline_theme='substrata'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:substrata_transparent = 1
 
-colorscheme gruvbox
-
+colorscheme substrata
 
 " Disable math tex conceal feature
 let g:tex_conceal = ''
