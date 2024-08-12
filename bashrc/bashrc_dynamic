@@ -1,0 +1,6 @@
+# Main bashrc, calls all the other scripts, ideally, I never change anything here
+
+for config_file in ~/.bashrc.d/*sh; do
+  [ -f "$config_file" ] && source "$config_file"
+done
+PROMPT_COMMAND="update_prompt"
