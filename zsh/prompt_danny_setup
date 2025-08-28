@@ -1,0 +1,59 @@
+prompt_danny_help () {
+  cat <<EOH
+This prompt is color-scheme-able.  You can invoke it thus:
+
+  prompt danny [<text-color> [<punctuation-color>] [<git-branch-color>]]
+
+Recommended fonts for this theme: either UTF-8, or nexus or vga or similar.
+If you don't have any of these, the 8-bit characters will probably look
+stupid.
+EOH
+}
+
+get_ip() {
+  # Get the first IP address (excludes 127.../8)
+  ip -4 a | awk -F '[ /]' '/[0-9]*\./ && !/127(\.+[[:digit:]]){3}/ {print $6; exit}'
+}
+
+
+prompt_danny_setup () {
+  local text=${1:-'white'}
+  local deco=${2:-'#1060ff'}
+  local git=${3:-'#ff8c00'}
+
+  local -A schars
+  autoload -Uz vcs_info prompt_special_chars
+  prompt_special_chars
+
+  # Git Style
+  zstyle ':vcs_info:*' enable git hg
+  zstyle ':vcs_info:*' check-for-changes true
+
+  precmd () {
+    vcs_info
+  }
+
+  zstyle ':vcs_info:*' formats " - %F{$git}(%b)%f"
+
+  PS1="%F{$deco}┌─[%F{$text}%D{%a %b-%d %H:%M:%S}%F{$deco}]%f - "
+  PS1+="%F{$deco}[%F{$text}$(get_ip)%F{$deco}]%f - "
+  PS1+="%F{$deco}[%F{$text}%~%F{$deco}]%f"'$vcs_info_msg_0_'$'\n'
+  PS1+="%F{$deco}└─> %f"
+
+  PS2="> "
+
+
+  prompt_opts=(cr subst percent)
+}
+
+prompt_danny_preview () {
+  if (( ! $#* )); then
+    prompt_preview_theme danny
+    print
+    prompt_preview_theme danny green yellow
+  else
+    prompt_preview_theme danny "$@"
+  fi
+}
+
+prompt_danny_setup "$@"

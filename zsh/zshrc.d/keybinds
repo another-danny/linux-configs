@@ -1,0 +1,11 @@
+#!/usr/bin/zsh
+
+zle -N backward-kill-space-word backward-kill-word-match
+zstyle :zle:backward-kill-space-word word-style shell
+
+bindkey '^R' history-incremental-search-backward # Ctrl+r
+bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
+bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
+bindkey '^[[3;5~' kill-word # Ctrl+Del 
+bindkey '^[^?' backward-kill-word
+bindkey '^W' backward-kill-space-word
