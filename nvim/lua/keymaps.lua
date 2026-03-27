@@ -1,8 +1,11 @@
---- leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+-- lua/keymaps.lua
 
---- keymaps
-vim.keymap.set("n", "<leader>q", ":q<cr>")
-vim.keymap.set("n", "<leader>Q", ":q!<cr>")
-vim.keymap.set("n", "<leader>wq", ":wq<cr>")
+local map = vim.keymap.set
+
+map("n", "<leader>q", "<cmd>q<cr>")
+map("n", "<leader>Q", "<cmd>q!<cr>")
+map("n", "<leader>wq", "<cmd>wq<cr>")
+
+-- Stay in visual mode when indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
